@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Ward;
+use App\Models\District;
+use App\Models\City;
 
 class TransportController extends Controller
 {
@@ -24,7 +27,8 @@ class TransportController extends Controller
      */
     public function create()
     {
-        return view('admin.transport.create');
+        $city = City::orderBy('matp','DESC')->get();
+        return view('admin.transport.create',compact('city'));
     }
 
     /**

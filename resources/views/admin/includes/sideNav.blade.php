@@ -21,10 +21,6 @@
                     Quản lý bình luận
                 </a>
                 <div class="sb-sidenav-menu-heading">Vận chuyển</div>
-                <a class="nav-link" href="{{route('admin.transport.index')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
-                    Liệt kê vận chuyển
-                </a>
                 <a class="nav-link" href="{{route('admin.transport.create')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
                     Thêm vận chuyển
