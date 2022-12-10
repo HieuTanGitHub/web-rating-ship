@@ -30,6 +30,13 @@ class TransportController extends Controller
         $city = City::orderBy('matp','DESC')->get();
         return view('admin.transport.create',compact('city'));
     }
+    public function update_delivery(Request $request){
+		$data = $request->all();
+		$fee_ship = Transport::find($data['feeship_id']);
+		$fee_value = rtrim($data['fee_value'],'.');
+		$fee_ship->fee_ship = $fee_value;
+		$fee_ship->save();
+	}
     public function insert_delivery(Request $request){
 		$data = $request->all();
 		$fee_ship = new Transport();

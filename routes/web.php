@@ -143,6 +143,7 @@ Route::group([
         Route::post('/select-delivery', [TransportController::class, 'select_delivery'])->name('admin.transport.select-delivery'); 
         Route::post('/insert-delivery', [TransportController::class, 'insert_delivery'])->name('admin.transport.insert-delivery'); 
         Route::post('/select-feeship', [TransportController::class, 'select_feeship'])->name('admin.transport.select-feeship'); 
+        Route::post('/update-delivery', [TransportController::class, 'update_delivery'])->name('admin.transport.update-delivery'); 
         
     });
 

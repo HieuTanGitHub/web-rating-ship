@@ -131,6 +131,23 @@
                 }
             });
         }); 
+        $(document).on('blur','.fee_feeship_edit',function(){
+
+        var feeship_id = $(this).data('feeship_id');
+        var fee_value = $(this).text();
+        var _token = $('input[name="_token"]').val();
+        // alert(feeship_id);
+        // alert(fee_value);
+        $.ajax({
+            url : '{{route('admin.transport.update-delivery')}}',
+            method: 'POST',
+            data:{feeship_id:feeship_id, fee_value:fee_value, _token:_token},
+            success:function(data){
+            fetch_delivery();
+            }
+        });
+
+        });
         $('.add_delivery').click(function(){
 
             var city = $('.city').val();
