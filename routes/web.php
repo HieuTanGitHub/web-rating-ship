@@ -138,7 +138,8 @@ Route::group([
     });
     // Quản lý vận chuyển
     Route::group(['prefix' => 'transport'], function () {
-        Route::get('/', [TransportController::class, 'index'])->name('admin.transport.index');
+        Route::get('/', [TransportController::class, 'index'])->name('admin.transport.index'); 
+        Route::get('/create', [TransportController::class, 'create'])->name('admin.transport.create'); 
     });
     //Quản lý thông kê
     // Route::group(['prefix' => 'statisticals'], function(){

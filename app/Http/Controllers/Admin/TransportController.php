@@ -14,7 +14,7 @@ class TransportController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.transport.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class TransportController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.transport.create');
     }
 
     /**
