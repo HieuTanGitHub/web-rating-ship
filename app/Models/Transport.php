@@ -13,4 +13,14 @@ class Transport extends Model
     	'city', 'province','wards','fee_ship'
     ];
  	protected $table = 'transport';
+    public function city(){
+
+        return $this->belongsTo(City::class,'transport_matp');
+    }
+    public function province(){
+        return $this->belongsTo(District::class, 'transport_maqh');
+    }
+    public function wards(){
+        return $this->belongsTo(Ward::class, 'transport_xaid');
+    }
 }

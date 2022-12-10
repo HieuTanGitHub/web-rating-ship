@@ -66,6 +66,9 @@
                
                 <button type="button" name="add_delivery" class="btn btn-info add_delivery">Thêm phí vận chuyển</button>
                 </form>
+                <div id="load_delivery">
+                                
+                </div>
                    
             </div>
         </div>
@@ -92,6 +95,19 @@
         } );    
     </script>    
     <script>
+         fetch_delivery();
+
+        function fetch_delivery(){
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url : '{{route('admin.transport.select-feeship')}}',
+                method: 'POST',
+                data:{_token:_token},
+                success:function(data){
+                $('#load_delivery').html(data);
+                }
+            });
+        }
          $('.choose').on('change',function(){
             var action = $(this).attr('id');
             var ma_id = $(this).val();
@@ -135,7 +151,7 @@
                     $('.province').val('');
                     $('.wards').val('');
                     $('.fee_ship').val('');
-                    //fetch_delivery();
+                    fetch_delivery();
 
                 }
             });

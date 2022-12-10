@@ -33,11 +33,48 @@ class TransportController extends Controller
     public function insert_delivery(Request $request){
 		$data = $request->all();
 		$fee_ship = new Transport();
-		$fee_ship->city = $data['city'];
-		$fee_ship->province = $data['province'];
-		$fee_ship->wards = $data['wards'];
+		$fee_ship->transport_matp = $data['city'];
+		$fee_ship->transport_maqh = $data['province'];
+		$fee_ship->transport_maxaid = $data['wards'];
 		$fee_ship->fee_ship = $data['fee_ship'];
 		$fee_ship->save();
+	}
+    public function select_feeship(){
+		$feeship = Transport::with('city','province','wards')->orderby('id','DESC')->get();
+		$output = '';
+		$output .= '<div class="table-responsive">  
+			<table class="table table-bordered">
+				<thread> 
+					<tr>
+						<th>Tên thành phố</th>
+						<th>Tên quận huyện</th> 
+						<th>Tên xã phường</th>
+						<th>Phí ship</th>
+					</tr>  
+				</thread>
+				<tbody>
+				';
+
+				foreach($feeship as $key => $fee){
+
+				$output.='
+					<tr>
+						<td>'.$fee->city->name_city.'</td>
+						<td>'.$fee->province->name_quanhuyen.'</td>
+						<td>'.$fee->wards->name_xaphuong.'</td>
+						<td contenteditable data-feeship_id="'.$fee->id.'" class="fee_feeship_edit">'.number_format($fee->fee_ship,0,',','.').'</td>
+					</tr>
+					';
+				}
+
+				$output.='		
+				</tbody>
+				</table></div>
+				';
+
+				echo $output;
+
+		
 	}
     public function select_delivery(Request $request){
     	$data = $request->all();
