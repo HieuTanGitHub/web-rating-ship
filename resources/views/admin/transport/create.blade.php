@@ -91,4 +91,56 @@
             $('#comment').DataTable();
         } );    
     </script>    
+    <script>
+         $('.choose').on('change',function(){
+            var action = $(this).attr('id');
+            var ma_id = $(this).val();
+            var _token = $('input[name="_token"]').val();
+            var result = '';
+            // alert(action);
+            //  alert(matp);
+            //   alert(_token);
+
+            if(action=='city'){
+                result = 'province';
+            }else{
+                result = 'wards';
+            }
+            $.ajax({
+                url : '{{route('admin.transport.select-delivery')}}',
+                method: 'POST',
+                data:{action:action,ma_id:ma_id,_token:_token},
+                success:function(data){
+                   $('#'+result).html(data);     
+                }
+            });
+        }); 
+        $('.add_delivery').click(function(){
+
+            var city = $('.city').val();
+            var province = $('.province').val();
+            var wards = $('.wards').val();
+            var fee_ship = $('.fee_ship').val();
+            var _token = $('input[name="_token"]').val();
+            // alert(city);
+            // alert(province);
+            // alert(wards);
+            // alert(fee_ship);
+            $.ajax({
+                url : '{{route('admin.transport.insert-delivery')}}',
+                method: 'POST',
+                data:{city:city, province:province, _token:_token, wards:wards, fee_ship:fee_ship},
+                success:function(data){
+                    $('.city').val('');
+                    $('.province').val('');
+                    $('.wards').val('');
+                    $('.fee_ship').val('');
+                    //fetch_delivery();
+
+                }
+            });
+
+
+            });
+    </script>
 @endsection
